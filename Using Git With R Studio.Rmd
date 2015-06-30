@@ -1,0 +1,24 @@
+---
+title: "Using Git With R Studio"
+author: "Jeremy Cuttrell"
+date: "Tuesday, June 30, 2015"
+output: html_document
+---
+**Purpose:**
+These instructions will be useful for creating a project within R-Studio and syncing the files with GitHub.
+
+#What you will need
+*R-Studio
+*gitHub Account
+*
+
+**Steps**  
+
+1. Open R-Studio
+2. Create new R Project `(File>New Project)`
+3. Log into GitHub
+4. Create new repository
+5. Open Git Bash
+6. Go to location where the R Project is stored: `cd Documents/RProjectName`
+7. Start up Git type: `git init`
+8. Add to BitHub Servers type: `git remote add origin ssh:`
