@@ -8,17 +8,42 @@ output: html_document
 These instructions will be useful for creating a project within R-Studio and syncing the files with GitHub.
 
 #What you will need
-*R-Studio
-*gitHub Account
-*
+* R-Studio  
+* GitHub Account
+* Git installed on your device
 
-**Steps**  
+
+##Steps  to follow
 
 1. Open R-Studio
-2. Create new R Project `(File>New Project)`
-3. Log into GitHub
-4. Create new repository
-5. Open Git Bash
-6. Go to location where the R Project is stored: `cd Documents/RProjectName`
-7. Start up Git type: `git init`
-8. Add to BitHub Servers type: `git remote add origin ssh:`
+2. Navigate to Tools>Global Options>Git/SVN
+3. Put path to git.exe with 'Git Executable'. Then click 'OK'  
+![](GitHub R-Studio Options.png)    
+**This will require a restart for this to take effect**
+4. Log into GitHub
+5. Create New Repository  
+![](GitHub Create New Repository.png)
+6. Copy Repository Link  
+![](GitHub Repository Link.png)
+7. Return to R-Studio
+8. Create new R Project `(File>New Project)`
+9. Select 'Version Control'  
+![](Create New Project.png)
+10. Select 'Git'  
+![](New Git Project.png)
+11. Paste repository link into 'Repository URL'  
+![](Close Git Repository.png)
+12. Select 'Create Project'  
+
+
+
+Now you are ready to begin creating and pushing files into your newly created repository
+Alternatively, in step 9 you could choose 'New Directory' but you could have to tag the folder within GitBash to sync with the GitHub repository.  
+9. Select 'New Directory'  
+10. Open GitBash  
+11. Change directories to the location where you put this new R-Studio project directory  
+12. Initialize git `git init`  
+13. Mark folder to synchranize with the repository  
+14. Sync!
+
+There you have it. Two different ways to get an R-Studio Project to sync with GitHub.
