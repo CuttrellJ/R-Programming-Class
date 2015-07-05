@@ -1,0 +1,200 @@
+---
+title: "Course Notes"
+author: "Jeremy Cuttrell"
+date: "Wednesday, July 01, 2015"
+output: html_document
+---
+
+
+#R Programming Basics  
+####Week: June 28  
+###Vectors, Data.Frames, Matricies, and the like  
+#### Vectors  
+R is a vectorized programming language. Which means Most results are stored with a vector. A **vector** is a sequence of data elements of the same basic type. For Example: 
+```{r}
+result<-1+1
+```
+returns the value `r result`. The container in which the value is returned is a vector of size `r length(result)`.  Often, vectors are built by concatenating similar data elements  together.
+```{r}
+c(1,3,5,7)
+c("Two", "Four", "Six") 
+c(TRUE, TRUE, TRUE, FALSE, TRUE)
+```
+The basic data elements:  
+
+* Numeric (Decimal)
+* Integer (whole numbers)
+* Complex (Imaginary values)
+* Logical (TRUE, FALSE)
+* Character (string values)
+
+When a vector contains more than one data type, it converts the remaining values to the lowest common denominator between all the data elements:
+```{r}
+c(1,3,5,7)
+c(1,3,5,7, TRUE, TRUE, TRUE, FALSE, TRUE)
+c(1,3,5,7,"Two", "Four", "Six",TRUE, TRUE, TRUE, FALSE, TRUE)
+```
+Each time more data types are added to the vector, the remaining data types get converted. TRUE/FALSE get converted to its corresponding numeric values. When the character information is added, all the data elements become characters.
+
+####Vector Arithmetic  
+we can perform mathematical operations on two different vectors
+```{r}
+c(1,2,3) + c(7,8,9)
+c(1,2,3) - c(7,8,9)
+c(1,2,3) * c(7,8,9)
+c(1,2,3) / c(7,8,9)
+```
+
+
+####Lists
+A **list** is a generic vector containing other objects. 
+For Example: 
+```{r}
+n = c(2, 3, 5) 
+s = c("Houston", "Dallas", "Austin", "El Paso", "Amarillo") 
+b = c(TRUE, FALSE, TRUE, FALSE, FALSE) 
+x = list(n, s, b, 3)   # x contains copies of n, s, b 
+x
+```
+Contraty to what it would appear, displaying the contents of the list does not return a 2-dimensional array (matrix). Insead it prints out the entire contents of the lists, by each vector, by each element.  Lists do not need to be of the same length. The list contain 'objects'. This means that each 'element' of the list can be a different object type. In this instance we used vectors for the first 3 elemts and a single number for the 4th element. This list could hold, vectors, matricies, data frames or even other lists. 
+```{r}
+s = c("Houston", "Dallas", "Austin", "El Paso", "Amarillo") 
+a = matrix( c(2, 4, 3, 1, 5, 7), nrow=2, ncol=3, byrow = TRUE)
+a 
+y<- list(s, a)
+y
+```
+
+Using the previous lists, we see that we can recall the information by reffering to the position of the information. However, if we apply 'names' the the information, calling the specific information we intend becomes easier. One benifit to this method, is that as we manipulate the list by adding or removing objects, we can still refer to the informaiton by name and not need to rely on positional references that may change. 
+
+```{r}
+x[2]
+names(x) <- c('Dice Roll', 'Cities',"Heads Toss", "Class Time")
+x$Cities
+```
+
+####Matricies  
+A **matrix** is a collection of data elements arranged in a two-dimensional rectangular layout. The following is an example of a matrix with 2 rows and 3 columns. 
+```{r}
+a = matrix( c(2, 4, 3, 1, 5, 7), nrow=2, ncol=3, byrow = TRUE)
+a 
+```
+We can extract a specific element at the mth row, nth column:
+```{r}
+a[2, 3]      # element at 2nd row, 3rd column 
+```
+We can return the entire mth row:
+```{r}
+a[2, ]       # the 2nd row 
+```
+Similarly, we can return the entire nth column:
+```{r}
+a[ ,3]       # the 3rd column 
+```
+
+####Data Frame  
+A **data frame** is used for storing data tables. It is a list of vectors of *equal* length. For example, the following variable df is a data frame containing three vectors n, s, b. 
+```{r}
+n = c(2, 3, 5) 
+s = c("Houston", "Dallas", "Austin") 
+b = c(TRUE, FALSE, TRUE) 
+df = data.frame(n, s, b)
+```
+We can pull back information on out data frame in a similar form that we did with the matrix df [2,3] would pull back the 2nd row and 3rd element, just like it did with the matrix. And if we add names to the data frame row and column, we can also pull back information back with a["City", "Month"] (where s <-'City'; n<-'Month')
+Lastly, the number of data rows in the data frame is given by the nrow function.
+```{r}
+nrow(a)    # number of data rows 
+```
+And the number of columns of a data frame is given by the ncol function.
+```{r}
+ncol(a)    # number of columns 
+```
+
+Instead of printing out the entire data frame, it is often desirable to preview it with the head or tail function beforehand. These are userful for seeing a small portion of the data. By default, it returns 6 rows of data. However, by setting the 'number' parameter of the fuction, we can return any number of data rows.
+```{r}
+head(a)
+tail(a)
+head(a, n = 10)
+```
+
+###The plyr Package  
+
+\newpage\pagebreak
+#July 5  
+##Data Manipulation  
+###Getting Data Into R-Studio  
+###Combine Data Sets  
+###First look at Data  
+
+\newpage\pagebreak
+#July 12  
+##Basic Statistics  
+
+You can perform a variety of functions on a single set of numbers. The data set could comprise of an array that you have read in from a .CSV file or it could be from a larger data set. If the latter is the case then ensure that you attach(dataset) so that the various variables contained within the larger data set are read in to memory.  
+
+Statictic                               | Function
+--------------------------------------- | ------------------
+The basic arithmetic mean               | mean(variable)
+The median (middle value)               | median(variable)
+The largest value in the variable       | max(variable)
+The smallest value in the variable      | min(variable)
+The standard deviation of the variable  | sd(variable)
+The number of items in the variable     | length(variable)
+The variance is given by this           | var(variable)
+
+You can determine any quantile using this function. Set the level to any value e.g. 0.25, 0.75 to return the appropriate quantile 	quantile(variable, level)
+
+
+
+Finding the Sum, Mean, Median, Mode, and standard deviation of a data set is some of the simplest statistics that can be performed. 
+
+Several of these functions are built into R. 
+```{r}
+data<- c(7,8,9,13,45,12,89,7,2,0,11,8,26,51)
+mean(data)
+median(data)
+```
+
+\newpage\pagebreak
+#July 19  
+##Advanced Statistics  
+###Clustering  
+###Decision Trees  
+###Machine Learning  
+###Linear Regression  
+###
+
+\newpage\pagebreak 
+#July 26  
+##Data Visulazation  
+###R Standard Plotting  
+     ####Scatter Plots  
+	####Histograms  
+	####Boxplots  
+	####Line Graphs  
+	
+	
+	http://www.harding.edu/fmccown/r/
+	####Line Charts
+	####Bar Charts
+	####Histograms
+	####Pie Charts
+	####Dotcharts
+	####Misc 
+	
+###ggplot2  
+### ???  
+###knitr  
+
+\newpage\pagebreak
+#August 2  
+##Advanced R Packages  
+
+#References:  
+YouTube:CodeAcademy.cc - Jared P. Lander [1]  
+Gardeners Own - Using R for statistical analyses [2]  
+R Tutor [3]  
+
+[1]:https://www.youtube.com/playlist?list=PLbLaohICnSGVOILgowBXzKtuw6T7BBvH5
+[2]:http://www.gardenersown.co.uk/education/lectures/r/index.htm
+[3]:http://www.r-tutor.com/
